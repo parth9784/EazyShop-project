@@ -6,44 +6,51 @@ import ProductList from './ProductList';
 import getdata from "./Data";
 import Dataarr from "./Dataarr";
 import { all } from "axios";
+import Loading from "./Loading";
+import Foooter from "./Foooter"
+import Pagenf from "./pagenf";
+import Details from "./productdetail";
+import Nodatafound from "./nodatafound";
+// import Lo
 function App() {
-  // const [alldata,upalldata]=useState([]);
   let alldata=Dataarr();
-  let [query,setquery]=useState("");
-  let [sort,upsort]=useState("DS");
-
-  let data=alldata.filter(function(item){
-    return item.title.toLowerCase().indexOf(query.toLowerCase()) != -1;
-  })
-
-  function handle(event){
-    let q=event.target.value;
-    setquery(q);
-  }
-
-  function handlesort(event){
-    let s=event.target.value;
-    upsort(s);
-  }
-  if(sort=="SPLH"){
-    data.sort((x,y)=>{
-      return x.price-y.price;
-    })
-  }
-  else if(sort=="SPHL"){
-    data.sort((x,y)=>{
-      return y.price-x.price;
-    })
-  }
-  else if(sort=="SN"){
-    data.sort((x,y)=>{
-      return x.title < y.title ? -1:1;
+    let [query,setquery]=useState("");
+    let [sort,upsort]=useState("DS");
+  
+    let data= alldata.filter(function(item){
+      return item.title.toLowerCase().indexOf(query.toLowerCase()) != -1;
     });
-  }
-
+  
+    function handle(event){
+      let q=event.target.value;
+      setquery(q);
+    }
+  
+    function handlesort(event){
+      let s=event.target.value;
+      upsort(s);
+    }
+    if(sort=="SPLH"){
+      data.sort((x,y)=>{
+        return x.price-y.price;
+      })
+    }
+    else if(sort=="SPHL"){
+      data.sort((x,y)=>{
+        return y.price-x.price;
+      })
+    }
+    else if(sort=="SN"){
+      data.sort((x,y)=>{
+        return x.title < y.title ? -1:1;
+      });
+    }
+    if(!data){
+      return <Loading></Loading>;
+    }
   return (
-    <div className="bg-[#F7F5F7] w-[100%] grid grid-row-2 gap-20">
-        <Heading />
+    <div className="bg-[#F7F5F7] w-screen flex flex-col gap-20">   
+    <Heading />
         <div className='flex items-center justify-around mx-4 '>
         <div class="w-10">
             <div class="relative w-full min-w-[200px] h-10">
@@ -67,10 +74,14 @@ function App() {
           <option value="SPHL">Sort By Price- Low to High</option>
           </select>
           </div>
-        </div>    
-    <div className='bg-white max-w-[1220px] sm:mx-[220px] mx-[110px] flex flex-wrap '>
-        <ProductList items={data} />
-    </div>
+        </div>
+        <div className="flex flex-col grow">
+        <Routes>
+        <Route path="/" element={<ProductList items={data} />}></Route>
+        <Route path="/ProductDetails/:sku" element={<Details />}></Route>
+        </Routes>
+        </div>
+      <Foooter/>
     </div>
   );
 }

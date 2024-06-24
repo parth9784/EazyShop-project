@@ -2,12 +2,12 @@ import React from "react";
 import { Routes, Route, Link } from 'react-router-dom';
 export default function Product({ title , id , category, price, image}){
     return (
-        <div class="shadow-lg w-[270px] mx-5 my-10 hover:scale-105 duration:1000 ">
+        <div class="flex flex-col shadow-md w-[270px] mx-5 my-10 hover:scale-105 duration-1000 ">
         <div>
           <img
             src={image}
             alt={category}
-            class="w-full sm:h-[300px] h-[250px] "
+            class="w-full sm:h-[300px] h-[250px]  rounded-lg transition-all duration-300 hover:scale-110 "
           />
         </div>
         <div className="ml-2">
@@ -62,7 +62,7 @@ export default function Product({ title , id , category, price, image}){
         </div>
         <h1 class="font-bold my-2">$ {price}</h1>
         </div>
-        <Link to={"/ProductDetail/+id"} className="text-red-500 ml-2" >View Details</Link>
+        <Link to={"/Productdetails/"+ id} className="text-red-500 ml-2 font-bold mb-2" >View Details</Link>
       </div>
     );
 }

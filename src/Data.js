@@ -1,5 +1,8 @@
 import React from "react";
 import axios from "axios";
-export default function getdata(){
+export function getdata(){
     return axios.get("https://dummyjson.com/products")
+}
+export function getbyid(id){
+    return axios.get("https://dummyjson.com/products/"+ id)
 }

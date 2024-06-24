@@ -1,6 +1,6 @@
 import React from "react"
 import { useEffect, useState } from "react";
-import getdata from "./Data";
+import { getdata } from "./Data";
 export default function Dataarr(){
     const [alldata1,upalldata]=useState([]);
     const xyz=getdata();
@@ -10,5 +10,6 @@ export default function Dataarr(){
       upalldata(response.data.products);
     })
   },[]);
-    return( alldata1);
+    return(alldata1);
 }
+// export default Dataarr;
