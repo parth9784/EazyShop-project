@@ -11,47 +11,35 @@ import Foooter from "./Foooter"
 import Pagenf from "./pagenf";
 import Details from "./productdetail";
 import Nodatafound from "./nodatafound";
-// import Lo
 function App() {
+  const saved_data=localStorage.getItem("cart") || {};
+  const data_json=JSON.parse(saved_data);
+  // const [totalcount,uptotalcount]=useState(0);
+  const[cart,upcart]=useState(data_json)
+  function handleaddtocart(productid,procount){
+    let oldcount=cart[productid] || 0;
+    const newcart={...cart,[productid]:procount+oldcount};
+    upcart(newcart);
+    
+    // uptotalcount(procount+totalcount);
+    let cartstr=JSON.stringify(newcart);
+    localStorage.setItem("cart",cartstr);
+  }
+  const totalcount=Object.keys(cart).reduce((x,y)=>{
+    return x+cart[y];
+  },0)
+  // uptotalcount(totalitem);
+  
   let alldata=Dataarr();
-    let [query,setquery]=useState("");
-    let [sort,upsort]=useState("DS");
-  
-    let data= alldata.filter(function(item){
-      return item.title.toLowerCase().indexOf(query.toLowerCase()) != -1;
-    });
-  
-    function handle(event){
-      let q=event.target.value;
-      setquery(q);
-    }
-  
-    function handlesort(event){
-      let s=event.target.value;
-      upsort(s);
-    }
-    if(sort=="SPLH"){
-      data.sort((x,y)=>{
-        return x.price-y.price;
-      })
-    }
-    else if(sort=="SPHL"){
-      data.sort((x,y)=>{
-        return y.price-x.price;
-      })
-    }
-    else if(sort=="SN"){
-      data.sort((x,y)=>{
-        return x.title < y.title ? -1:1;
-      });
-    }
-    if(!data){
+    if(!alldata){
       return <Loading></Loading>;
     }
+    // bg-[#F7F5F7]
+    //use rgb(209,217,255)
   return (
     <div className="bg-[#F7F5F7] w-screen flex flex-col gap-20">   
-    <Heading />
-        <div className='flex items-center justify-around mx-4 '>
+    <Heading c={totalcount}/>
+        {/* <div className='flex items-center justify-around mx-4 '>
         <div class="w-10">
             <div class="relative w-full min-w-[200px] h-10">
               <div class="absolute grid w-5 h-5 place-items-center text-blue-gray-500 top-2/4 right-3 -translate-y-2/4">
@@ -74,11 +62,12 @@ function App() {
           <option value="SPHL">Sort By Price- Low to High</option>
           </select>
           </div>
-        </div>
+        </div> */}
         <div className="flex flex-col grow">
         <Routes>
-        <Route path="/" element={<ProductList items={data} />}></Route>
-        <Route path="/ProductDetails/:sku" element={<Details />}></Route>
+        <Route path="/" element={<ProductList />}></Route>
+        <Route path="/ProductDetails/:sku" element={<Details  onaddtocart={handleaddtocart}/>}></Route>
+        <Route path="*" element={<Pagenf/>} ></Route>
         </Routes>
         </div>
       <Foooter/>

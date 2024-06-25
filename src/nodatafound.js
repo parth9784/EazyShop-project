@@ -1,6 +1,8 @@
 import React from "react";
+// import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 export default function Nodatafound(){
-    return(<div>
-        <lottie-player src="https://lottie.host/870b00c8-bd76-4e8a-86e8-4af2793f34d4/CrmFzHlMo7.json" background="##FFFFFF" speed="1" style={{width: "300px", height: "300px"}} loop autoplay direction="1" mode="normal"></lottie-player>
-    </div>);
+    return(<div className="flex flex-col justify-center items-center">
+    <lottie-player src="https://lottie.host/9661affa-159c-4835-84a7-87bde6c6c166/n0l01vWJvc.json" background="##FFFFFF" speed="1" style={{width: "580px", height: "580px"}} loop  autoplay direction="1" mode="normal"></lottie-player>
+        
+        </div>);
 }

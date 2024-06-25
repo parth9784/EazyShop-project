@@ -2,34 +2,37 @@ import React, { useState,useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { getbyid } from "./Data";
 import Loading from "./Loading";
-export  default function Details(){
+import Nodatafound from "./nodatafound";
+export  default function Details({onaddtocart}){
     let id = useParams();
+    let sno=id.sku;
     // console.log(id)
-    let [product,upproduct]=useState();
+    const [product,upproduct]=useState();
+    const[loading,setloading]=useState(true);
+    const[count,upcount]=useState(1);
     useEffect(function(){
         const p=getbyid(id.sku);
         p.then(function(response){
             upproduct(response.data);
+            setloading(false);
+        }).catch(()=>{
+            setloading(false);
         })
 
     })
-    if(!product){
+    if(loading){
         return <Loading/>
     }
-    // let pro=getdata();
-    // let xyz=pro.then(function(response){
-    //     return(response.data.products);
-    // })
-    // console.log(xyz)
-    // let product;
-    // for(let i=0;i<pro.length;i++){
-    //     let p=pro[i];
-    //     if(sno==p.id){
-    //         product=p;
-    //         break;
-    //     }
-    // }
-    // console.log(product)
+    if(!product){
+        return <Nodatafound/>
+    }
+    function handleclick(){
+        onaddtocart(sno,count);
+    }
+    function handlechange(event){
+        upcount(+event.target.value)
+    }
+    console.log(count);
     let discount=((product.discountPercentage)*(product.price)/100)
     let oriprice=product.price+discount;
     return (
@@ -49,8 +52,8 @@ export  default function Details(){
         <p class="mt-3 text-gray-500">
         {product.description}
         </p>
-        <button class="px-4 py-2 bg-gray-200 mt-3 mr-2">1</button>
-        <button class="bg-red-500  hover:bg-red-700 rounded font-bold text-white px-2 py-2 mt-5">
+        <input type="number" onChange={handlechange} class=" bg-gray-200 mt-3 mr-2 w-[45px] h-[35px] rounded" min="1" max="10" step="1" placeholder="1"></input>
+        <button onClick={handleclick} class="bg-red-500  hover:bg-red-700 rounded font-bold text-white px-2 py-2 mt-5">
           ADD TO CART
         </button>
         </div>
