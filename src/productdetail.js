@@ -38,7 +38,7 @@ export  default function Details({onaddtocart}){
     return (
         <div className="flex shadow-lg max-w-[900px] m-3 ">
         <div>
-            <img src={product.thumbnail} class="basis-[45%] max-w-xs h-[350px] m-4 shadow-lg rounded-lg transition-all duration-300 hover:scale-110"></img> 
+            <img src={product.thumbnail} alt="product" class="basis-[45%] max-w-xs h-[350px] m-4 shadow-lg rounded-lg transition-all duration-300 hover:scale-110"></img> 
         </div>
         <div class="px-6">
         <h1 class="basis-[55%] text-2xl mt-3 text-gray-500 font-bold">
@@ -46,7 +46,7 @@ export  default function Details({onaddtocart}){
         </h1>
         <p>By {product.brand}</p>
         <p class="text-xl font-bold mt-3">$ {product.price}</p>
-        <p className="mt-1"><s className="text-gray-400">M.R.P: ${oriprice.toFixed(2)}</s>&nbsp;<a className="text-sm font-bold">{product.discountPercentage}% Off</a></p>
+        <p className="mt-1"><s className="text-gray-400">M.R.P: ${oriprice.toFixed(2)}</s>&nbsp;<span className="text-sm font-bold text-black">{product.discountPercentage}% Off</span></p>
         <p className="text-sm font-semibold">Rating: {product.rating}/5</p>
         <p className="text-md font-semibold mt-1">{product.returnPolicy}</p>
         <p class="mt-3 text-gray-500">
