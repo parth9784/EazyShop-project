@@ -8,10 +8,12 @@ import Foooter from "./Foooter"
 import Pagenf from "./pagenf";
 import Details from "./productdetail";
 function App() {
-  const saved_data=localStorage.getItem("cart") || {};
-  const data_json=JSON.parse(saved_data);
+
   // const [totalcount,uptotalcount]=useState(0);
-  const[cart,upcart]=useState(data_json)
+
+  const saved_data=localStorage.getItem("cart") || "{}";
+  const data_json=JSON.parse(saved_data);
+  const[cart,upcart]=useState(data_json);
   function handleaddtocart(productid,procount){
     let oldcount=cart[productid] || 0;
     const newcart={...cart,[productid]:procount+oldcount};
@@ -25,6 +27,7 @@ function App() {
     return x+cart[y];
   },0)
   // uptotalcount(totalitem);
+ 
   
   let alldata=Dataarr();
     if(!alldata){
