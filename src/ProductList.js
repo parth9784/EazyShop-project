@@ -39,7 +39,7 @@ export default function ProductList(){
     }
     return (
         <div>
-        <div className='flex items-center justify-around mx-4 '>
+        <div className='flex items-center justify-between mx-4 px-7 '>
         <div class="w-10">
             <div class="relative w-full min-w-[200px] h-10">
               <div class="absolute grid w-5 h-5 place-items-center text-blue-gray-500 top-2/4 right-3 -translate-y-2/4">
@@ -55,7 +55,7 @@ export default function ProductList(){
             </div>
           </div> 
           <div>
-          <select className='ml-[900px] border-black' onChange={handlesort} >
+          <select className='border-black' onChange={handlesort} >
           <option value="DS">Sort By Default</option>
           <option value="SN">Sort By Title</option>
           <option value="SPLH">Sort By Price- Low to High</option>
