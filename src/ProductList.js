@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Product from "./Products";
 import Dataarr from "./Dataarr";
-import Heading from './Heading';
 import Loading from "./Loading";
 export default function ProductList(){
     let alldata=Dataarr();
     let [query,setquery]=useState("");
     let [sort,upsort]=useState("DS");
-
-//    console.log(alldata)
     let data= alldata.filter(function(item){
-      return item.title.toLowerCase().indexOf(query.toLowerCase()) != -1;
+      return item.title.toLowerCase().indexOf(query.toLowerCase()) !== -1;
     });
   
     function handle(event){
@@ -22,17 +19,17 @@ export default function ProductList(){
       let s=event.target.value;
       upsort(s);
     }
-    if(sort=="SPLH"){
+    if(sort==="SPLH"){
       data.sort((x,y)=>{
         return x.price-y.price;
       })
     }
-    else if(sort=="SPHL"){
+    else if(sort==="SPHL"){
       data.sort((x,y)=>{
         return y.price-x.price;
       })
     }
-    else if(sort=="SN"){
+    else if(sort==="SN"){
       data.sort((x,y)=>{
         return x.title < y.title ? -1:1;
       });

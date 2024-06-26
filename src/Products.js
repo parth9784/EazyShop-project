@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 export default function Product({ title , id , category, price, image}){
     return (
         <div class="flex flex-col shadow-md w-[270px] mx-5 my-10 hover:scale-105 duration-1000 ">

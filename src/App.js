@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import Heading from './Heading';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Product from './Products';
+import { Routes, Route } from 'react-router-dom';
 import ProductList from './ProductList';
-import getdata from "./Data";
 import Dataarr from "./Dataarr";
-import { all } from "axios";
 import Loading from "./Loading";
 import Foooter from "./Foooter"
 import Pagenf from "./pagenf";
 import Details from "./productdetail";
-import Nodatafound from "./nodatafound";
 function App() {
   const saved_data=localStorage.getItem("cart") || {};
   const data_json=JSON.parse(saved_data);
