@@ -18,7 +18,6 @@ export  default function Details({onaddtocart}){
         }).catch(()=>{
             setloading(false);
         })
-
     })
     if(loading){
         return <Loading/>

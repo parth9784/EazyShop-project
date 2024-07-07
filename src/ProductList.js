@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useMemo } from "react";
 import Product from "./Products";
 import Dataarr from "./Dataarr";
 import Loading from "./Loading";
@@ -19,21 +19,25 @@ export default function ProductList(){
       let s=event.target.value;
       upsort(s);
     }
-    if(sort==="SPLH"){
-      data.sort((x,y)=>{
-        return x.price-y.price;
-      })
-    }
-    else if(sort==="SPHL"){
-      data.sort((x,y)=>{
-        return y.price-x.price;
-      })
-    }
-    else if(sort==="SN"){
-      data.sort((x,y)=>{
-        return x.title < y.title ? -1:1;
-      });
-    }
+    useMemo(()=>{
+      if(sort==="SPLH"){
+        data.sort((x,y)=>{
+          return x.price-y.price;
+        })
+      }
+      else if(sort==="SPHL"){
+        data.sort((x,y)=>{
+          return y.price-x.price;
+        })
+      }
+      else if(sort==="SN"){
+        data.sort((x,y)=>{
+          return x.title < y.title ? -1:1;
+        });
+      }
+
+    }, [sort])
+    
     if(!data){
         return <Loading/>;
     }

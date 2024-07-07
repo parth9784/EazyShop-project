@@ -8,7 +8,7 @@ export default function Heading({c}){
             <div className="flex gap-8 mr-5">
                 <Link to="/" className="flex gap-2 items-center text-center"><i class="fa-solid fa-house"></i>Home</Link>
                 <Link className="flex gap-2 items-center text-center"><i class="fa-solid fa-address-card"></i>About</Link>
-                <Link className="flex gap-2 items-center text-center"><FaShoppingCart />Cart</Link>
+                <Link to="/cart" className="flex gap-2 items-center text-center"><FaShoppingCart />Cart</Link>
                 <span className="w-[25px] h-[25px] bg-black rounded-full p-1 text-white absolute top-[22px] right-[143px]">{c}</span>
                 <Link className="flex gap-2 items-center text-center"><i class="fa-solid fa-user"></i>
                 Account</Link>
