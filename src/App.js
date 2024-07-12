@@ -11,7 +11,6 @@ import Cart from "./cart";
 function App() {
 
   // const [totalcount,uptotalcount]=useState(0);
-
   const saved_data=localStorage.getItem("cart") || "{}";
   const data_json=JSON.parse(saved_data);
   const[cart,upcart]=useState(data_json);
@@ -28,7 +27,7 @@ function App() {
     return x+cart[y];
   },0)
   // uptotalcount(totalitem);
- 
+
   
   let alldata=Dataarr();
     if(!alldata){
@@ -43,7 +42,7 @@ function App() {
         <Routes>
         <Route path="/" element={<ProductList />}></Route>
         <Route path="/ProductDetails/:sku" element={<Details  onaddtocart={handleaddtocart}/>}></Route>
-        <Route path="/cart" element={<Cart cart={cart}/>}></Route>
+        <Route path="/cart" element={<Cart cart={cart} upcart={upcart}/>}></Route>
         <Route path="*" element={<Pagenf/>} ></Route>
         </Routes>
         </div>
