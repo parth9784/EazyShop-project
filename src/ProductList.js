@@ -38,7 +38,7 @@ export default function ProductList(){
 
     }, [sort])
     
-    if(!data){
+    if(!data || !alldata){
         return <Loading/>;
     }
     return (

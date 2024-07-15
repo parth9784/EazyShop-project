@@ -10,6 +10,8 @@ export default function Cart({cart,upcart}){
         const newcart={...cart}
         delete newcart[data]
         upcart(newcart)
+    let cartstr=JSON.stringify(newcart);
+    localStorage.setItem("cart",cartstr);
     }
     // console.log(productid)
     useEffect(function(){

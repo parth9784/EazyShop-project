@@ -10,7 +10,6 @@ import Details from "./productdetail";
 import Cart from "./cart";
 function App() {
 
-  // const [totalcount,uptotalcount]=useState(0);
   const saved_data=localStorage.getItem("cart") || "{}";
   const data_json=JSON.parse(saved_data);
   const[cart,upcart]=useState(data_json);
@@ -18,15 +17,12 @@ function App() {
     let oldcount=cart[productid] || 0;
     const newcart={...cart,[productid]:procount+oldcount};
     upcart(newcart);
-    
-    // uptotalcount(procount+totalcount);
     let cartstr=JSON.stringify(newcart);
     localStorage.setItem("cart",cartstr);
   }
   const totalcount=Object.keys(cart).reduce((x,y)=>{
     return x+cart[y];
   },0)
-  // uptotalcount(totalitem);
 
   
   let alldata=Dataarr();
