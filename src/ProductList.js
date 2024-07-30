@@ -1,15 +1,23 @@
-import React, { useState,useMemo } from "react";
+import React, { useState,useMemo, useEffect } from "react";
 import Product from "./Products";
 import Dataarr from "./Dataarr";
 import Loading from "./Loading";
+import { useNavigate } from "react-router-dom";
+
 export default function ProductList(){
+    const navigate=useNavigate()
     let alldata=Dataarr();
     let [query,setquery]=useState("");
     let [sort,upsort]=useState("DS");
+    useEffect(()=>{
+      let token=localStorage.getItem("token");
+      if(!token){
+        navigate("/signup")
+      }
+    },[])
     let data= alldata.filter(function(item){
       return item.title.toLowerCase().indexOf(query.toLowerCase()) !== -1;
     });
-  
     function handle(event){
       let q=event.target.value;
       setquery(q);
