@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-export default function Product({ title , id , category, price, image}){
+export default function Product({ title , id , category, price}){
     return (
-        <div class="flex flex-col shadow-md w-[270px] mx-5 my-10 hover:scale-105 duration-1000 ">
+        <div key={id} class="flex flex-col shadow-md w-[270px] mx-5 my-10 hover:scale-105 duration-1000 ">
         <div>
           <img
-            src={image}
+            src="https://via.placeholder.com/150"
             alt={category}
             class="w-full sm:h-[300px] h-[250px]  rounded-lg transition-all duration-300 hover:scale-110 "
           />

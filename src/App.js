@@ -31,8 +31,6 @@ function App() {
     if(!alldata){
       return <Loading></Loading>;
     }
-    // bg-[#F7F5F7]
-    //use rgb(209,217,255)
   return (
     <div className="bg-[#F7F5F7] w-screen flex flex-col gap-20">   
      {location.pathname !== "/signup"&& location.pathname !== "/login" && <Heading c={totalcount} />}
