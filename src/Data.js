@@ -22,3 +22,8 @@ export async function Getdata(sort,query,Pagenumber,sortBy){
 
 
 }
+export async function Getbyid(id){
+    const data=await axios.get("https://myeasykart.codeyogi.io/products/bulk?ids="+id)
+    return data.data;
+
+}

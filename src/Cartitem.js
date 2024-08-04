@@ -10,7 +10,7 @@ export default function Cartitem({url,price,quantity,title,pid,remove}){
         <MdCancel onClick={()=>{handlecancel(pid)}} style={{ cursor: 'pointer'}}/>
         </div>
             <div>
-                <img src={url} className="h-[80px] rounded"/>
+                <img src="https://picsum.photos/300/200" className="h-[80px] rounded"/>
             </div>
             <h2 className="font-semibold text-xl text-orange-600">{title}</h2>
             <h2 className="font-semibold text-md">${price}</h2>

@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
 import { useParams } from 'react-router-dom';
-import { getbyid } from "./Data";
+import { Getbyid, getbyid } from "./Data";
 import Loading from "./Loading";
 import Nodatafound from "./nodatafound";
 export  default function Details({onaddtocart}){
@@ -10,15 +10,25 @@ export  default function Details({onaddtocart}){
     const [product,upproduct]=useState();
     const[loading,setloading]=useState(true);
     const[count,upcount]=useState(1);
-    useEffect(function(){
-        const p=getbyid(id.sku);
-        p.then(function(response){
-            upproduct(response.data);
-            setloading(false);
-        }).catch(()=>{
-            setloading(false);
-        })
-    })
+    // useEffect(function(){
+    //     const p=getbyid(id.sku);
+    //     p.then(function(response){
+    //         upproduct(response.data);
+    //         setloading(false);
+    //     }).catch(()=>{
+    //         setloading(false);
+    //     })
+    // })
+    useEffect(()=>{
+        const fetchpro=async()=>{
+            const res=await Getbyid(id.sku);
+            // console.log(res[0]);
+            upproduct(res[0])
+            setloading(false)
+        }
+        fetchpro(sno);
+    },[])
+ 
     if(loading){
         return <Loading/>
     }
@@ -37,7 +47,7 @@ export  default function Details({onaddtocart}){
     return (
         <div className="flex shadow-lg max-w-[900px] m-3 ">
         <div>
-            <img src={product.thumbnail} alt="product" class="basis-[45%] max-w-xs h-[350px] m-4 shadow-lg rounded-lg transition-all duration-300 hover:scale-110"></img> 
+            <img src="https://picsum.photos/300/200" alt="product" class="basis-[45%] max-w-xs h-[350px] m-4 shadow-lg rounded-lg transition-all duration-300 hover:scale-110"></img> 
         </div>
         <div class="px-6">
         <h1 class="basis-[55%] text-2xl mt-3 text-gray-500 font-bold">

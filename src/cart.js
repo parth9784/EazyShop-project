@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getbyid } from "./Data";
+import { Getbyid, getbyid } from "./Data";
 import Cartitem from "./Cartitem";
 import Loading from "./Loading";
 export default function Cart({cart,upcart}){
@@ -17,7 +17,7 @@ export default function Cart({cart,upcart}){
     useEffect(function(){
     let mypromise=[];
         for(let i=0;i<productid.length;i++){
-            const promise=getbyid(productid[i]).then((res)=>{return res.data})
+            const promise=Getbyid(productid[i]).then((res)=>{return res[0]})
             mypromise.push(promise)
         }
         Promise.all(mypromise).then((p)=>{

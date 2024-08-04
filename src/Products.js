@@ -5,7 +5,7 @@ export default function Product({ title , id , category, price}){
         <div key={id} class="flex flex-col shadow-md w-[270px] mx-5 my-10 hover:scale-105 duration-1000 ">
         <div>
           <img
-            src="https://via.placeholder.com/150"
+            src="https://picsum.photos/300/200"
             alt={category}
             class="w-full sm:h-[300px] h-[250px]  rounded-lg transition-all duration-300 hover:scale-110 "
           />
