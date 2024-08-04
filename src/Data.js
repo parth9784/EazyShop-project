@@ -18,7 +18,7 @@ export async function Getdata(sort,query,Pagenumber,sortBy){
         params.page=Pagenumber;
     }
     let data=await axios.get("https://myeasykart.codeyogi.io/products",{params});
-    return(data.data)
+    return(data)
 
 
 }
